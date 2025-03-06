@@ -1,0 +1,275 @@
+/* 🎵 Spotify-Inspired Music Player Styles – Version Identique à Spotify */
+:root {
+    --primary-bg: #121212;
+    --secondary-bg: #1d1d1d;
+    --player-bg: #282828;      /* Couleur de fond du player Spotify */
+    --accent-color: #1db954;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+}
+
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.music-app {
+    display: flex;
+    height: 100vh;
+}
+
+/* 🎵 Sidebar Navigation */
+.sidebar {
+    width: 250px;
+    background: var(--secondary-bg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 15px 0;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a i {
+    margin-right: 10px;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: var(--accent-color);
+}
+
+/* 🎵 Main Content */
+.music-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* --- Barre de recherche --- */
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-form input {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+    background: #282828;
+    color: var(--text-color);
+}
+
+.search-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    background: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: #1ed760;
+}
+
+/* 🎵 Albums */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.album-card {
+    background: var(--secondary-bg);
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.album-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.album-cover {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.album-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 🎵 Music List */
+.track-list {
+    list-style: none;
+    padding: 0;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.track-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.track-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.track-artist {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.play-button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.play-button:hover {
+    color: var(--accent-color);
+}
+
+/* 🎵 Audio Player */
+.custom-audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--player-bg);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* --- Informations de la piste --- */
+.audio-info {
+    display: flex;
+    align-items: center;
+}
+
+.audio-info img {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.audio-info .track-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.audio-info .track-details .track-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.audio-info .track-details .track-artist {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* --- Contrôles du lecteur --- */
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-controls button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.player-controls button:hover {
+    color: var(--accent-color);
+}
+
+/* --- Barre de progression --- */
+.progress-container {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* --- Volume --- */
+#volume-slider {
+    width: 100px;
+}

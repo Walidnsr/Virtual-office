@@ -1,0 +1,63 @@
+/* Desktop – Fond d'écran et conteneur */
+#desktop {
+  width: 100vw;
+  height: calc(100vh - 45px); /* La hauteur du bureau exclut la barre des tâches (55px) */
+  background: url('../images/desktop-background.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  padding: 20px;
+  padding-bottom: 20px; /* Espace interne supplémentaire */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Conteneur de positionnement des icônes */
+.desktop-icons {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Style des icônes du bureau */
+.desktop-icon {
+  display: flex;
+  flex-direction: column;  /* Permet d’empiler image + texte */
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
+  position: absolute; /* Placées dynamiquement par iconManager */
+  width: 80px;  /* Légèrement élargi pour s’adapter aux noms longs */
+  height: 100px; /* Ajustement pour icône + texte */
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 5px;
+  transition: background 0.2s ease;
+  text-align: center; /* Centre le texte */
+}
+
+/* Hover et sélection appliquent un fond éclairci */
+.desktop-icon:hover,
+.desktop-icon.selected {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Image de l'icône */
+.desktop-icon img {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin-bottom: 5px; /* Espace entre l’image et le texte */
+}
+
+/* Texte de l'icône centré et ajusté */
+.desktop-icon span {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  font-size: 13px;
+  text-align: center;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajoute "..." si le texte est trop long */
+}

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/memorygame.css' %}">
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de mémoire</title>
+    
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <h1>Jeu de mémoire</h1>
+    <p>Nombre de coups : <span id="moves">0</span></p>
+
+    <!-- Grille de jeu -->
+    <div class="grid" id="gameGrid"></div>
+
+    <!-- Bouton Rejouer -->
+    <button id="restartButton">Rejouer</button>
+
+    <!-- Inclusion du fichier JavaScript -->
+    <script src="{% static 'js/memorygame.js' %}"></script>
+
+</body>
+</html>

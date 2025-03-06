@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Chatbot - Virtual Office{% endblock %}
+{% block content %}
+<div class="chatbot-container">
+    <h2>Chatbot</h2>
+    <div id="chatbot-display"></div>
+
+    <!-- Container for input and button -->
+    <div class="chatbot-input-container">
+        <input type="text" id="user-input" placeholder="Type here!!" />
+        <button id="send-button">Send</button>
+    </div>
+</div>
+
+<!-- Link to CSS and JS files -->
+<link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+<script src="{% static 'js/chatbot.js' %}"></script>
+{% endblock %}

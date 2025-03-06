@@ -1,0 +1,62 @@
+{% extends "base-login.html" %}
+{% block title %}Sign Up - Virtual Office{% endblock %}
+{% block content %}
+<div class="login-container">
+  <div class="login-box">
+    <h2>Sign Up</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_username">Username</label>
+        {{ form.username }}
+        <div class="tooltip" id="tooltip-username">
+          <div class="tooltip-content">
+            Required. Maximum 150 characters. Only letters, digits, and the characters "@", ".", "+", "-", and "_" are allowed.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="id_password1">Password</label>
+        {{ form.password1 }}
+        <div class="tooltip" id="tooltip-password1">
+          <div class="tooltip-content">
+            Your password must contain at least 8 characters, must not be too similar to your other information, must not be commonly used, and must not be entirely numeric.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="id_password2">Confirm Password</label>
+        {{ form.password2 }}
+        <div class="tooltip" id="tooltip-password2">
+          <div class="tooltip-content">
+            Enter the same password as before for verification.
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+    <p class="register-text">
+      Already registered? <a href="{% url 'login' %}">Log in</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  // Show the tooltip on input focus and hide it on blur
+  window.addEventListener('load', function() {
+    const inputs = document.querySelectorAll('.form-group input');
+    inputs.forEach(input => {
+      const tooltip = input.parentElement.querySelector('.tooltip');
+      if (!tooltip) return;
+      input.addEventListener('focus', function() {
+        tooltip.style.opacity = '1';
+        tooltip.style.visibility = 'visible';
+      });
+      input.addEventListener('blur', function() {
+        tooltip.style.opacity = '0';
+        tooltip.style.visibility = 'hidden';
+      });
+    });
+  });
+</script>
+{% endblock %}

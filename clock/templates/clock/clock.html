@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge macOS - Minuteur & Alarme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #001b5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 350px;
+        }
+
+        .clock-face {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hand {
+            position: absolute;
+            background: white;
+            border-radius: 10px;
+            transform-origin: bottom;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hour-hand {
+            width: 6px;
+            height: 60px;
+            bottom: 50%;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 80px;
+            bottom: 50%;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 100px;
+            background: red;
+            bottom: 50%;
+        }
+
+        .center-dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .digital-clock, .timer-display, .alarm-display {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        input, button {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 80%;
+            text-align: center;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Horloge Analogique -->
+        <div class="clock-face">
+            <div class="hand hour-hand" id="hourHand"></div>
+            <div class="hand minute-hand" id="minuteHand"></div>
+            <div class="hand second-hand" id="secondHand"></div>
+            <div class="center-dot"></div>
+        </div>
+        
+        <!-- Horloge Numérique -->
+        <div class="digital-clock" id="digitalClock">00:00:00</div>
+
+        <!-- Minuteur -->
+        
+    </div>
+
+    <audio id="alarmSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourDeg = (hours % 12) * 30 + (minutes / 2);
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+
+            document.getElementById('hourHand').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minuteHand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('secondHand').style.transform = `rotate(${secondDeg}deg)`;
+
+            document.getElementById('digitalClock').textContent = now.toLocaleTimeString('fr-FR');
+
+            // Vérifier si l'alarme doit sonner
+            if (alarmTime && now.getHours() === alarmTime.getHours() && now.getMinutes() === alarmTime.getMinutes()) {
+                document.getElementById('alarmSound').play();
+                alert("⏰ L'alarme sonne !");
+                alarmTime = null; // Désactiver après sonnerie
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Minuteur
+        let timer;
+        let timeLeft = 0;
+
+        function startTimer() {
+            let duration = parseInt(document.getElementById('timerInput').value);
+            if (isNaN(duration) || duration <= 0) {
+                alert("Veuillez entrer un temps valide.");
+                return;
+            }
+
+            clearInterval(timer); // Réinitialiser le minuteur si un autre est en cours
+
+            timeLeft = duration;
+            document.getElementById('timerDisplay').textContent = formatTime(timeLeft);
+            
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('timerDisplay').textContent = "00:00";
+                    document.getElementById('alarmSound').play();
+                    alert("⏳ Le minuteur est terminé !");
+                    return;
+                }
+
+                timeLeft--;
+                document.getElementById('timerDisplay').textContent = formatTime(timeLeft);
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 0;
+            document.getElementById('timerDisplay').textContent = "00:00";
+            document.getElementById('timerInput').value = "";
+        }
+
+        function formatTime(seconds) {
+            let min = Math.floor(seconds / 60);
+            let sec = seconds % 60;
+            return `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+        }
+
+        // Alarme
+        let alarmTime = null;
+        function setAlarm() {
+            let inputTime = document.getElementById('alarmTime').value;
+            if (!inputTime) {
+                alert("Veuillez définir une heure d'alarme.");
+                return;
+            }
+
+            let [hours, minutes] = inputTime.split(":").map(Number);
+            alarmTime = new Date();
+            alarmTime.setHours(hours, minutes, 0);
+            document.getElementById('alarmDisplay').textContent = `Alarme réglée à ${inputTime}`;
+        }
+
+        function stopAlarm() {
+            document.getElementById('alarmSound').pause();
+            alarmTime = null;
+            document.getElementById('alarmDisplay').textContent = "Alarme non définie";
+        }
+    </script>
+
+</body>
+</html>

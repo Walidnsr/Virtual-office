@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une note</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stickynotes/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter une nouvelle note</h1>
+        <form class="note-form" method="POST">
+            {% csrf_token %}
+            <label for="title">Titre:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="content">Contenu:</label>
+            <textarea id="content" name="content" required></textarea>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+        <a class="back-link" href="{% url 'note_list' %}">Retour à la liste</a>
+    </div>
+</body>
+</html>

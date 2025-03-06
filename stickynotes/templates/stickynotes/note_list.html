@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sticky Notes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stickynotes/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mes Notes</h1>
+        <a class="add-note" href="{% url 'add_note' %}">Ajouter une note</a>
+        <ul class="note-list">
+            {% for note in notes %}
+                <li>
+                    <div>
+                        <strong>{{ note.title }}</strong>: {{ note.content }}
+                    </div>
+                    <a class="delete-note" href="{% url 'delete_note' note.id %}">Supprimer</a>
+                </li>
+            {% empty %}
+                <li>Aucune note pour le moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
