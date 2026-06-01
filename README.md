@@ -1,42 +1,78 @@
-# Virtual Office Setup Guide
+# Virtual Office
+Ce projet est un virtual desktop qui permet de se connecter et d'accéder à son environnement avec plusieurs applications.
+Projet réalisé en collaboration avec : Ilyes ACHAQ, Bastien ROBERT, Antoine MOUTIER
+## Design & Interface
+L'interface utilisateur s'inspire du style **glassmorphism** de macOS, avec des éléments semi-transparents, des arrière-plans floutés et des bordures subtiles. 
 
-## 1. Create and Activate a Virtual Environment
-To ensure a clean working environment, create and activate a virtual environment:
+## Fonctionnalités
+Virtual Office propose plusieurs applications intégrées :
 
-```sh
+- **📝 Bloc-notes** 
+- **🧮 Calculatrice** 
+- **📁 Explorateur de fichiers**
+- **🎵 Lecteur de musique** 
+- **🌤 Application météo** 
+- **⏰ Horloge** 
+- **💻 Terminal** 
+- **📅 Agenda** 
+- **🤖 Chatbot** 
+- **🎮 Application de jeux** 
+- **📽 Lecteur multimédia** 
+- **📰 Application de nouvelles** 
+- **🖼 Visionneuse de photos** 
+- **📈 Application boursière** 
+
+
+https://github.com/user-attachments/assets/ee0385d2-8f4c-49fe-ac3e-3101999becc4
+
+
+
+# Installation
+Pour installer et tester le projet, veuillez suivre les étapes suivantes.
+
+```
+git clone https://github.com/votre-utilisateur/virtual-office.git    
+cd virtual-office
+```
+
+## Créer et activer un environnement:
+
+Linux/Mac:
+```
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+Windows:
+
+```
 python -m venv venv
-source venv/Scripts/activate
+
+venv\Scripts\activate
 ```
 
-## 2. Install Dependencies
-Once the virtual environment is activated, install the necessary dependencies:
+## Installer les dépendances:
 
-```sh
-pip install django cohere requests Pillow
 ```
+pip install django cohere requests Pillow Plotly
+```
+Appliquer les migrations:
 
-## 3. Apply Migrations
-Run the following commands to set up the database:
-
-```sh
+```
 python manage.py migrate
+
 python manage.py createdemo
 ```
 
-## 4. Start the Server
-Launch the development server using:
 
-```sh
+# Démarrer le serv:
+
+```
 python manage.py runserver
 ```
 
-Once started, open your browser and navigate to:
+Ouvrez http://127.0.0.1:8000/.
 
-[http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-## 5. Default User Credentials
-Use the following credentials to log in:
-
-- **Username:** Demo
-- **Password:** Azerty1234
-
+User : demo / demo

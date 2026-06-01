@@ -1,25 +1,25 @@
 {% extends "base-login.html" %}
-{% block title %}Login - Virtual Office{% endblock %}
+{% block title %}Connexion - Virtual Office{% endblock %}
 
 {% block content %}
 
 <div class="login-container">
     <div class="login-box">
-        <h2>Login</h2>
+        <h2>Connexion</h2>
         <form method="post">
           {% csrf_token %}
           <div class="form-group">
-            {{ form.username.label_tag|default:"Username" }}
+            {{ form.username.label_tag }}
             {{ form.username }}
           </div>
           <div class="form-group">
-            {{ form.password.label_tag|default:"Password" }}
+            {{ form.password.label_tag }}
             {{ form.password }}
           </div>
-          <button type="submit" class="btn">Log in</button>
+          <button type="submit" class="btn">Se connecter</button>
         </form>
         <p class="register-text">
-          Don't have an account yet? <a href="{% url 'register' %}">Sign up</a>
+          Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a>
         </p>
       </div>
 </div>

@@ -1,106 +1,109 @@
-.clock-app {
-    max-width: 450px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 15px;
-    background: rgba(20, 20, 20, 0.95);
-    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.6);
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    backdrop-filter: blur(10px);
-}
-
-.clock-app:hover {
-    transform: scale(1.02);
-}
-
-.clock-header {
-    font-size: 24px;
-    font-weight: bold;
-    color: #00ffff;
-    text-shadow: 0px 0px 8px cyan;
-    padding-bottom: 10px;
-}
-
-.clock-time {
-    font-size: 55px;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #00ffff;
-    text-shadow: 0px 0px 12px cyan;
-}
-
-.clock-controls {
+body {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    align-items: center;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.clock-controls button {
-    background: linear-gradient(135deg, #00ffff, #009999);
-    color: black;
-    padding: 12px 18px;
+.container {
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    color: white;
+    background: #2c2c2e;
+    border-radius: 15px;
+    width: 400px;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+#clock-display, #chrono-display, #timer-display {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #ff9500;
+}
+
+.controls button, .navigation button {
+    background-color: #ff9500;
+    color: white;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
-    margin: 8px;
+    margin: 5px;
     border-radius: 10px;
     font-size: 16px;
-    width: 150px;
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-.clock-controls button:hover {
-    background: linear-gradient(135deg, #00cccc, #007777);
-    transform: scale(1.1);
+.controls button:hover, .navigation button:hover {
+    background-color: #ff8500;
 }
 
 .hidden {
     display: none;
 }
 
-#chrono-container, #timer-container, #alarm-container {
+#chrono-container, #timer-container {
     margin-top: 20px;
-    padding: 20px;
-    border: 2px solid #00ffff;
+    padding: 15px;
+    border: 1px solid #ff9500;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.85);
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+    background: #2c2c2e;
 }
 
 #chrono-display, #timer-display {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
-    color: #00ffff;
-    text-shadow: 0px 0px 6px cyan;
-    margin: 10px 0;
+    color: #ff9500;
 }
 
-button {
-    background: linear-gradient(135deg, #00ffff, #009999);
-    color: black;
-    padding: 10px 15px;
+#timer-container input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    width: 180px;
+    border-radius: 5px;
+    border: 1px solid #ff9500;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+#timer-container button {
+    background-color: #ff9500;
+    color: white;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
     margin: 5px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background: linear-gradient(135deg, #00cccc, #007777);
-    transform: scale(1.1);
+#timer-container button:hover {
+    background-color: #ff8500;
 }
 
-@keyframes glowEffect {
-    0% { box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7); }
-    50% { box-shadow: 0px 0px 20px rgba(0, 255, 255, 1); }
-    100% { box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7); }
+#start-chrono, #stop-chrono, #reset-chrono,
+#start-timer, #stop-timer, #reset-timer {
+    background-color: #ff9500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.clock-app, #chrono-container, #timer-container, #alarm-container {
-    animation: glowEffect 4s infinite;
+#start-chrono:hover, #stop-chrono:hover, #reset-chrono:hover,
+#start-timer:hover, #stop-timer:hover, #reset-timer:hover {
+    background-color: #ff8500;
+}
+
+.navigation {
+    margin-top: 20px;
 }

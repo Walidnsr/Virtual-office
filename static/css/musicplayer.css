@@ -1,275 +1,197 @@
-/* 🎵 Spotify-Inspired Music Player Styles – Version Identique à Spotify */
-:root {
-    --primary-bg: #121212;
-    --secondary-bg: #1d1d1d;
-    --player-bg: #282828;      /* Couleur de fond du player Spotify */
-    --accent-color: #1db954;
-    --text-color: #ffffff;
-    --text-muted: #b3b3b3;
-}
-
 body {
-    background: var(--primary-bg);
-    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
+    color: #333;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
-.music-app {
-    display: flex;
-    height: 100vh;
-}
-
-/* 🎵 Sidebar Navigation */
-.sidebar {
-    width: 250px;
-    background: var(--secondary-bg);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.nav-links {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-links li {
-    margin: 15px 0;
-}
-
-.nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-}
-
-.nav-links a i {
-    margin-right: 10px;
-}
-
-.nav-links a:hover,
-.nav-links .active {
-    color: var(--accent-color);
-}
-
-/* 🎵 Main Content */
-.music-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #e50914;
     margin-bottom: 20px;
 }
 
-/* --- Barre de recherche --- */
 .search-form {
     display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-.search-form input {
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    width: 300px;
-    background: #282828;
-    color: var(--text-color);
+.input-group {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    background: #f0f0f0;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.search-form input::placeholder {
-    color: var(--text-muted);
-}
-
-.search-btn {
-    background: var(--accent-color);
-    color: #ffffff;
+.input-group input {
+    flex: 1;
+    background: none;
     border: none;
     padding: 10px 15px;
-    border-radius: 20px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    border-radius: 25px;
+}
+
+.input-group button {
+    background: #e50914;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.search-btn:hover {
-    background: #1ed760;
+.input-group button:hover {
+    background: #b80d0d;
 }
 
-/* 🎵 Albums */
-.album-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-}
-
-.album-card {
-    background: var(--secondary-bg);
-    padding: 15px;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-}
-
-.album-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.album-cover {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.album-info {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* 🎵 Music List */
 .track-list {
     list-style: none;
     padding: 0;
+    margin: 20px 0;
+    max-height: calc(100vh - 200px); 
+    overflow-y: auto;
+    padding-right: 10px;
+    overflow-x: hidden; 
+    padding-left: 10px; 
 }
 
 .track-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background 0.2s;
-    cursor: pointer;
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: calc(100% - 20px);
 }
 
 .track-item:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f1f1;
+    transform: scale(1.02);
 }
 
 .track-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
-.track-info {
-    flex: 1;
-}
-
-.track-title {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.track-artist {
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-.play-button {
-    background: transparent;
-    border: none;
-    color: var(--text-color);
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.play-button:hover {
-    color: var(--accent-color);
-}
-
-/* 🎵 Audio Player */
-.custom-audio-player {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--player-bg);
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* --- Informations de la piste --- */
-.audio-info {
-    display: flex;
-    align-items: center;
-}
-
-.audio-info img {
-    width: 56px;
-    height: 56px;
-    border-radius: 4px;
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
     margin-right: 15px;
 }
 
-.audio-info .track-details {
-    display: flex;
-    flex-direction: column;
+.track-info {
+    flex-grow: 1;
+    text-align: left;
 }
 
-.audio-info .track-details .track-title {
+.track-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.track-artist {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.play-button {
+    background: #e50914;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    margin: 0;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
 }
 
-.audio-info .track-details .track-artist {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin: 0;
+.play-button:hover {
+    background: #b80d0d;
+    transform: scale(1.1);
 }
 
-/* --- Contrôles du lecteur --- */
-.player-controls {
+.custom-audio-player {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 450px;
+    background: #fff;
+    padding: 15px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
-.player-controls button {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 20px;
-    cursor: pointer;
-    outline: none;
-}
-
-.player-controls button:hover {
-    color: var(--accent-color);
-}
-
-/* --- Barre de progression --- */
 .progress-container {
     flex: 1;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
+    height: 5px;
+    background: #ddd;
+    border-radius: 10px;
     margin: 0 15px;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
 }
 
 .progress {
-    width: 0;
-    height: 100%;
-    background: var(--accent-color);
-    border-radius: 2px;
+    height: 5px;
+    background: #e50914;
+    width: 0%;
+    transition: width 0.2s;
 }
 
-/* --- Volume --- */
 #volume-slider {
-    width: 100px;
+    width: 60px;
+    cursor: pointer;
 }
+
+.track-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.track-list::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+}
+
+.track-list::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+}
+.track-item.playing {
+    background: #ffdddd;
+    border-left: 5px solid #e50914;
+    transition: background 0.3s ease;
+}
+
