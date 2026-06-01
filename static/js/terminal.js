@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const inputField = document.getElementById('input-terminal');
-    const outputDiv = document.getElementById('output-terminal');
+    const inputField = document.getElementById('terminal-input');
+    const outputDiv = document.getElementById('terminal-output');
 
     // Fonction pour ajouter du texte dans la sortie du terminal
     function appendOutput(text) {
-        const preElement = document.createElement('pre');
-        preElement.textContent = text;
-        outputDiv.appendChild(preElement);
+        const pre = document.createElement('pre');
+        pre.textContent = text;
+        outputDiv.appendChild(pre);
         outputDiv.scrollTop = outputDiv.scrollHeight;
     }
 
     // Fonction pour envoyer la commande au serveur et traiter la réponse
-    function processCommand(commandInput) {
+    function processCommand(command) {
         fetch('/terminal/execute/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ command: commandInput })
+            body: JSON.stringify({ command: command })
         })
         .then(response => response.json())
         .then(data => {
@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Détecte la touche Entrée dans le champ de saisie
-    inputField.addEventListener('keypress', function(event) {
-        if(event.key === 'Enter') {
-            const commandInput = inputField.value;
-            processCommand(commandInput);
+    inputField.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') {
+            const command = inputField.value;
+            processCommand(command);
             inputField.value = "";
         }
     });

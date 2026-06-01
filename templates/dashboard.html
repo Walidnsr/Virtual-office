@@ -22,11 +22,16 @@
   <div id="start-menu" class="hidden">
     <div class="start-menu-content">
       <div class="start-menu-header">
+        <div class="account-info">
+          <i class="fa-solid fa-user"></i> <a href="/accounts/profile/">Mon Compte</a>
+        </div>
         <div class="logout">
           <a href="/accounts/logout/"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
         </div>
       </div>
-      
+      <div class="start-menu-search">
+        <input type="text" id="start-search" placeholder="Rechercher des applications...">
+      </div>
       <div class="start-menu-apps">
         {% for app in apps %}
         <div class="start-app" data-app="{{ app.id }}">

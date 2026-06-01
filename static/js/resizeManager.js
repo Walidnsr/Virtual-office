@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   window.resizeManager = {
     makeResizable: function(win) {
-      const minWidth = 300;
+      const minWidth = 200;
       const minHeight = 150;
       const handles = [
         { cls: 'resizer bottom-right', cursor: 'nwse-resize' },
